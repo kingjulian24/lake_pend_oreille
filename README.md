@@ -16,13 +16,11 @@ Generate the Mean and Median of the wind speed, barometric and air temperature f
 * Process Data
 * Return Results
 
-## Get Date Range via URL
-```
-/getData/:year/:start/:end
-:year = yyyy
-:start = mm_dd
-:end = mm_dd
-```
+
+
+### Installation
+
+Install  [Mongodb]
 
 ### DB Setup
 ```
@@ -30,9 +28,14 @@ ID: date + time in milliseconds
 date: date in milliseconds
 data: reading
 ```
-### Installation
 
-Install  [Mongodb]
+## Get Date Range via URL
+```
+/getData/:year/:start/:end
+:year = yyyy
+:start = mm_dd
+:end = mm_dd
+```
 
 Generate test data: 
 ```sh
