@@ -5,7 +5,7 @@ Need MongoDB
 
 Use dbTest.js to generate test data
 ```sh
-$ node dbTest.js
+$ node stats/dbTest.js
 ```
 
 Install dependencies from /root & /stats
