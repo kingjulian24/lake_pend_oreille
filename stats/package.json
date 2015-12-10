@@ -13,6 +13,8 @@
     "co": "^4.6.0",
     "cogent": "^1.0.1",
     "cradle": "^0.6.9",
-    "mongoose": "^4.2.9"
+    "lodash": "^3.10.1",
+    "mongoose": "^4.2.9",
+    "underscore": "^1.8.3"
   }
 }
