@@ -37,8 +37,8 @@ Install  [Mongodb]
 Generate test data: 
 ```sh
 $ node stats/dbTest.js
-note: edit file as needed.
 ```
+note: edit file as needed.
 
 Install dependencies from /root & /stats
 ```sh
