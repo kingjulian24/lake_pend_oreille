@@ -3,17 +3,20 @@ var async = require('async');
 var request = require('request');
 var _= require('underscore');
 var db;
+var helpers = require('../test/helpers');
 
-
-
-
+//why the dependancy injection for db?
 var searchDB = function (d, userInput, cb) {
+helpers.pk('search', d, userInput);
     db = d;
     var dates = urls(userInput.startDate, userInput.endDate).dates;
+		console.log('dates',dates);
+
     async.map(dates, queryDB, function(err, data){
+			console.log('map', err, data);
+			if(err) return cb(err);
         cb(data);
     });
-  
 };
 
 var queryDB = function(date,cb ) {
@@ -26,11 +29,14 @@ var queryDB = function(date,cb ) {
      });
  };
 
+/*
 var url = "http://127.0.0.1:3000/getData/2014/01_01/01_06";
 request(url , function(err,res,body){
+	helpers.pk('1111', err, res, body);
     var data = JSON.parse(body);
     console.log(_.flatten(data));
 });
+*/
 
 module.exports = {
     db: searchDB

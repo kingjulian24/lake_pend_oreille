@@ -1,0 +1,6 @@
+--recursive
+--reporter spec
+--timeout 35000
+--require should
+--require should-sinon
+--require test/helpers
