@@ -1,5 +1,6 @@
 var urls = require('./urls');
 var async = require('async');
+var request = require('request');
 var _= require('underscore');
 var db;
 
@@ -23,7 +24,10 @@ var queryDB = function(date,cb ){
      });
  };
 
-
+var url = "http://127.0.0.1:3000/getData/2014/01_01/01_03";
+request(url , function(err,res,body){
+    console.log(body);
+});
 
 module.exports = {
     db: searchDB
