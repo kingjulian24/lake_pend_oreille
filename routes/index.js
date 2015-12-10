@@ -3,6 +3,7 @@
  * GET home page.
  */
 var app = require('../stats');
+var _ = require('underscore');
 exports.index = function(req, res){
   res.render('index', { title: 'Express' });
 };
@@ -13,12 +14,11 @@ exports.getData = function(req, res){
     if (userInput.inRange) {
         
         app.search.db(app.db, userInput, function(err, data){
-
             
            if(err) {
                res.send(err);
            } else {
-               res.json(data);
+               res.json(_.flatten(data));
            }
         });
         

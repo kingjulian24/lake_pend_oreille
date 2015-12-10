@@ -4,7 +4,9 @@ var request = require('request');
 var _= require('underscore');
 var db;
 
-var notInDB = [];
+
+
+
 var searchDB = function (d, userInput, cb) {
     db = d;
     var dates = urls(userInput.startDate, userInput.endDate).dates;
@@ -14,19 +16,20 @@ var searchDB = function (d, userInput, cb) {
   
 };
 
-var queryDB = function(date,cb ){
+var queryDB = function(date,cb ) {
+    var missingIDs = [];
      db.wsm.find({ date: date }, function(err,data){
         if(data.length < 1 ){
-            console.log(data);
-           notInDB.push(date);  // note: on page reload notInDB stays in mem.
-        } 
-         return cb(null,notInDB);
+           missingIDs.push(date);  
+        }
+         return cb( null, missingIDs );
      });
  };
 
-var url = "http://127.0.0.1:3000/getData/2014/01_01/01_03";
+var url = "http://127.0.0.1:3000/getData/2014/01_01/01_06";
 request(url , function(err,res,body){
-    console.log(body);
+    var data = JSON.parse(body);
+    console.log(_.flatten(data));
 });
 
 module.exports = {
