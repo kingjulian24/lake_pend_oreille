@@ -25,7 +25,7 @@ var _ = require('underscore');
     }
     
     // Convert dates to millisecond
-    dates = _.map(dates, function(date){ return new Date(date).getTime();});
+    dates = _.map(dates, function(date){ return new Date(date.replace(/-/g,"/")).getTime();});
     
     dateRange.dates = dates;
     dateRange.err = dates.length < 8 ? null : "Out of Range";
