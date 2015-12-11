@@ -1,20 +1,34 @@
- module.exports = function(req) {
-    var year = parseInt(req.year);
-    var month = parseInt( req.start.substr( 0, 2 ) );
-    var day = parseInt( req.start.substr(3) );
-    var startDay = new Date( year+"/"+month+"/"+day );
+var dra = require('date-range-array');
+var _ = require('underscore');
+
+/*
+    @param {}
+    param = {
+        year: YYYY: String,
+        start: MM-DD: String,
+        end: MM-DD: String
+    }
     
-    var eMonth = parseInt( req.end.substr( 0, 2 ) );
-    var eDay = parseInt( req.end.substr(3) );
-    var endDay = new Date( year+"/"+eMonth+"/"+eDay );
+    return = {
+        dateRange: [] : Number : milliseconds,
+        err: Null/String
+    }
+*/
+
+ module.exports = function ( range ) {
+    var dateRange = {};
+    // Generate date range array 
+    try {
+       var dates = dra(range.year+"-"+range.start, range.year+"-"+range.end); 
+    } catch (e) {
+        return {err: e};
+    }
     
-    var dateRangeObj = {
-        siteStartUrl: "http://lpo.dt.navy.mil/data/DM/" + req.year + "/" + req.year + "_" + req.start + "/Air_Temp",
-        siteEndUrl: "http://lpo.dt.navy.mil/data/DM/" + req.year + "/" + req.year + "_" + req.end + "/Air_Temp",
-        startDate: startDay,
-        endDate: endDay,
-        inRange: endDay.getDate() - startDay.getDate() < 8 ? true : false
-    };
+    // Convert dates to millisecond
+    dates = _.map(dates, function(date){ return new Date(date).getTime();});
     
-    return dateRangeObj;
-};
+    dateRange.dates = dates;
+    dateRange.err = dates.length < 8 ? null : "Out of Range";
+    
+    return dateRange;   
+}
