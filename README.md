@@ -32,9 +32,9 @@ data: reading
 ## Get Date Range via URL
 ```
 /getData/:year/:start/:end
-:year = yyyy
-:start = mm_dd
-:end = mm_dd
+:year = YYYY
+:start = MM-DD
+:end = MM-DD
 ```
 
 Generate test data: 
