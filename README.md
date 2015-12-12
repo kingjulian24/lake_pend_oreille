@@ -38,12 +38,6 @@ data: reading
 :end = MM-DD
 ```
 
-Generate test data: 
-```sh
-$ node stats/dbTest.js
-```
-note: edit file as needed.
-
 Install dependencies 
 ```sh
 $ npm install 
