@@ -36,12 +36,19 @@ var getReadingOuter = function(urls, cb){
 
 function formatReadings(r) {
     var readings = {wind_speed:[],air_temp: [], bar_press: []};
+    var readingArr, dateStr,id;
     for(var i = 0; i < r.length; i++) {
         var obj = r[i];
         for(prop in obj){
             for (var i = 0; i < obj[prop].length; i++) {
-                console.log(obj[prop][i]);
-                readings[prop].push( _.compact(obj[prop][i].trim().split(" "))[2] );
+                readingArr = _.compact(obj[prop][i].trim().split(" "));
+                dateStr = new Date( readingArr[0].replace(/_/g,"/") ).getTime();
+                id = new Date ( readingArr[0].replace(/_/g,"/") +" "+ readingArr[1] ).getTime();
+                readings[prop].push({
+                    _id: id,
+                    date: dateStr,
+                    data: parseFloat(readingArr[2])
+                });
             }
         } 
     }
