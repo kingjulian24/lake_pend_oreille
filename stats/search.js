@@ -3,6 +3,7 @@ var request = require('request');
 var _= require('underscore');
 var db = require('./models/readings');
 var moment = require('moment');
+var helpers = require('../test/helpers');
 
 var queryDB = function(date,cb ) {
      db.wind_speed.find({ date: date }, function(err,data){
@@ -89,7 +90,6 @@ function getUrls(dates) {
     
     return urls;
 }
-
 
 
 module.exports = {

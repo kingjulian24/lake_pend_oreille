@@ -1,6 +1,8 @@
 //http://lpo.dt.navy.mil/data/DM/2014/2014_01_01/Air_Temp
 //http://lpo.dt.navy.mil/data/DM/2014/2014_01_01/Wind_Speed
 //http://lpo.dt.navy.mil/data/DM/2014/2014_01_01/Barometric_Press
+var helpers = require('../test/helpers');
+
 function formatDate(date) {
     if (date < 10) {
         return "0"+date;
@@ -9,6 +11,7 @@ function formatDate(date) {
 }
 
 module.exports = function( beginDate, endDate ) {
+	helpers.pk('dates', beginDate, endDate)
     var days = endDate.getDate() - beginDate.getDate();
     var beginYear = beginDate.getFullYear();
     var beginMonth = beginDate.getMonth() + 1;

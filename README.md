@@ -47,7 +47,10 @@ Install dependencies from /root & /stats
 ```sh
 $ npm install 
 ```
-
+## Run Tests
+```sh
+$ sh moch test
+```
 
 
 [MongoDB]: <https://www.mongodb.org/downloads#productiong>

@@ -1,0 +1,6 @@
+#!/bin/bash
+export NODE_PATH='./stats'
+BASE=$( cd $( dirname ${BASH_SOURCE[0]} ) && cd .. && pwd)
+
+#echo $BASE
+NODE_TLS_REJECT_UNAUTHORIZED=0 $BASE/lake_pend_oreille/node_modules/mocha/bin/mocha "$@"
