@@ -1,13 +1,26 @@
-var urls = require('./urls');
-var dra = require('date-range-array');
+var _ = require('underscore');
+var data = require('./data');
+var x = {
+        air_temp: [],
+        bar_press: [],
+        wind_speed: []
+    };
 
-d1 ="2014-01-01";
-d2 ="2014-01-02";
-//
-//var x = urls(new Date(d1), new Date(d2));
-//console.log(x);
-//console.log(new Date(d1));
-//console.log(new Date(d2));
-console.log(dra(d1,d2));
-var d3 = d1.replace(/-/g,"/");
-console.log(d3);
+for(var i = 0; i< data.length; i++) {
+  
+var obj = data[i];
+   for(p in obj) {
+       for(var i = 0; i<obj[p].length; i++){
+           x[p].push( _.compact(obj[p][i].trim().split(" "))[2]);
+       }
+   } 
+}
+
+var last = _.last(x.at);
+for(p in x) {
+    x[p] = x[p].slice(0, -1);
+}
+
+var f = [1,2,4,5,6,4];
+
+console.log(x);
