@@ -1,20 +1,21 @@
 var mongoose = require('./models/readings.js');
 var newDate = new Date("2014/01/02 00:00:10").getTime();
 var date = new Date("2014/01/02").getTime();
-var record = new mongoose.atm({
+var record = new mongoose.wind_speed({
     _id: newDate,
     date: date,
     data: 45.7
 });
 
 
-record.save(function(err){
-    if(!err){
-        console.log('saved :)');
-    } else {
-        console.log(err);
-    }
-});
+console.log(record);
+//record.save(function(err){
+//    if(!err){
+//        console.log('saved :)');
+//    } else {
+//        console.log(err);
+//    }
+//});
 //{
 //    $and: 
 //    [

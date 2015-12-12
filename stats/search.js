@@ -5,7 +5,7 @@ var db = require('./models/readings');
 var moment = require('moment');
 
 var queryDB = function(date,cb ) {
-     db.wsm.find({ date: date }, function(err,data){
+     db.wind_speed.find({ date: date }, function(err,data){
         if(data.length < 1 ) { return cb( null, date ); } // return date not in db
         cb(null, false);      
      });
@@ -16,10 +16,23 @@ var searchDB = function (dates, cb) {
         var urls = getUrls(_.compact(dates));
         async.map(urls, getReadingOuter, function(err, readings){
             var fr = formatReadings(readings);
-            cb(fr);
+            async.map(fr, saveToDB, function(err, results){
+                cb(results);
+            });
+            
         });
         
     });
+};
+
+var saveToDB = function(record, cb) {
+   record.save(function(err){
+       if(err) {
+           cb(false, false);
+       }
+       
+       cb(null, true);
+   }); 
 };
 
 var getReadingInner = function(url, cb) {
@@ -34,8 +47,9 @@ var getReadingOuter = function(urls, cb){
     });
 };
 
+
 function formatReadings(r) {
-    var readings = {wind_speed:[],air_temp: [], bar_press: []};
+    var records = [];
     var readingArr, dateStr,id;
     for(var i = 0; i < r.length; i++) {
         var obj = r[i];
@@ -44,15 +58,18 @@ function formatReadings(r) {
                 readingArr = _.compact(obj[prop][i].trim().split(" "));
                 dateStr = new Date( readingArr[0].replace(/_/g,"/") ).getTime();
                 id = new Date ( readingArr[0].replace(/_/g,"/") +" "+ readingArr[1] ).getTime();
-                readings[prop].push({
-                    _id: id,
-                    date: dateStr,
-                    data: parseFloat(readingArr[2])
-                });
+                records.push(
+                    new db[prop]({
+                        _id: id,
+                        date: dateStr,
+                        data: parseFloat(readingArr[2])
+                    })
+                );
+            
             }
         } 
     }
-    return readings;
+    return records;
 }
 
 
