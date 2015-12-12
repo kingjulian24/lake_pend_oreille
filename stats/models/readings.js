@@ -7,9 +7,9 @@ readingsSchema = new Schema({
     date: Number,
     data: Number
 });
-var wsm = mongoose.model('wind_speed_reading', readingsSchema);
-var atm = mongoose.model('air_temperature_reading', readingsSchema);
-var bpm = mongoose.model('barometric_pressure_reading', readingsSchema);
+var wsm = mongoose.model('wind_speed', readingsSchema);
+var atm = mongoose.model('air_temp', readingsSchema);
+var bpm = mongoose.model('bar_press', readingsSchema);
 
 module.exports = {
     wsm: wsm,
