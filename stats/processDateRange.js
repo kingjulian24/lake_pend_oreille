@@ -47,7 +47,7 @@ console.log( MINYEAR );
 function isValid( dates ) {
 
  if( dates.length > 7 ){
-     dateRange.err = "Out of Range";
+     dateRange.err = "Out of Range, Please use a range that is 7 days or less.";
      return;   
  }
 
