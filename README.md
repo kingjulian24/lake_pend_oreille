@@ -44,10 +44,6 @@ Install  [Mongodb]
 ### DB Setup
 ```
 DB Name: DMDB
-
-ID: Number, date + time in milliseconds
-date: Number, date in milliseconds
-data: Number, reading
 ```
 
 Install dependencies 
