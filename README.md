@@ -1,7 +1,7 @@
 # lake_pend_oreille
 
 ### Overview:
-Generate the Mean and Median of the wind speed, barometric and air temperature for a given date range of the Lake Pend Oreille dataset.
+Generate the Mean and Median of the wind speed, barometric and air temperature for a given date range of the [Lake Pend Oreille] dataset.
 
 ### API
 
@@ -57,5 +57,6 @@ $ mocha test
 
 [MongoDB]: <https://www.mongodb.org/downloads#productiong>
 [LPO]: <http://lpo.dt.navy.mil/>
+[Lake Pend Oreille]: <http://lpo.dt.navy.mil/> 
 [processDateRange]: <https://github.com/kingjulian24/lake_pend_oreille/blob/master/stats/processDateRange.js>
 [search]: <https://github.com/kingjulian24/lake_pend_oreille/blob/master/stats/search.js>
