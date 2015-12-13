@@ -8,8 +8,6 @@ var thisMonth = todaysDate.getMonth();
 var thisYear = todaysDate.getFullYear();
 var maxDate = new Date(thisYear,thisMonth, yesterday).getTime();
 
-console.log( MINYEAR );
-
 /*
     @param {}
     param = {
