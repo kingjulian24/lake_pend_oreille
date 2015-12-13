@@ -13,9 +13,9 @@ Generate the Mean and Median of the wind speed, barometric and air temperature f
 *  ~~Check to see if date range exist in database~~ [search]
 *  ~~Else retrieve data from~~ [LPO][search]
 * ~~Retrieve Data~~ [search]
-* Process Data
-* Return Results
-* ~~Need to break up~~ [search]
+* ~~Process Data~~
+* ~~Return Results~~
+* Need to break up [search]
 
 
 
