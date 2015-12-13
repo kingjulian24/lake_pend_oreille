@@ -15,8 +15,25 @@ Generate the Mean and Median of the wind speed, barometric and air temperature f
 * ~~Retrieve Data~~ [search]
 * ~~Process Data~~
 * ~~Return Results~~
-* Add endpoint for raw data 
+* ~~Add endpoint for raw data~~ 
 * Need to break up [search]
+ 
+### API
+
+Get Summary
+```
+/getData/:year/:start/:end
+:year = YYYY
+:start = MM-DD
+:end = MM-DD
+```
+Get Raw Data
+```
+/getData/:year/:start/:end/raw
+:year = YYYY
+:start = MM-DD
+:end = MM-DD
+```
 
 
 
@@ -29,14 +46,6 @@ Install  [Mongodb]
 ID: date + time in milliseconds
 date: date in milliseconds
 data: reading
-```
-
-## Get Date Range via URL
-```
-/getData/:year/:start/:end
-:year = YYYY
-:start = MM-DD
-:end = MM-DD
 ```
 
 Install dependencies 
