@@ -9,13 +9,13 @@ Generate the Mean and Median of the wind speed, barometric and air temperature f
 *  ~~Choose database~~ [mongodb]
 *  ~~Configure DB~~
 *  ~~Save Test Data to DB~~ 
-*  Check [LPO] for date range [search]
-*  Check to see if date range exist in database [search]
-*  Else retrieve data from [LPO]
-* Retrieve Data [search]
+*  ~~Check [LPO] for date range~~ [search]
+*  ~~Check to see if date range exist in database~~ [search]
+*  ~~Else retrieve data from~~ [LPO][search]
+* ~~Retrieve Data~~ [search]
 * Process Data
 * Return Results
-* Need to break up [search]
+* ~~Need to break up~~ [search]
 
 
 
