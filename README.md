@@ -3,21 +3,6 @@
 ### Overview:
 Generate the Mean and Median of the wind speed, barometric and air temperature for a given date range of the Lake Pend Oreille dataset.
 
-*  ~~Get Date Range via url~~ [search]
-*  ~~Formate Date Range~~ [processDateRange]
-*  ~~Make sure the date range is less than 8 days~~ [processDateRange]
-*  ~~Choose database~~ [mongodb]
-*  ~~Configure DB~~
-*  ~~Save Test Data to DB~~ 
-*  ~~Check [LPO] for date range~~ [search]
-*  ~~Check to see if date range exist in database~~ [search]
-*  ~~Else retrieve data from~~ [LPO][search]
-* ~~Retrieve Data~~ [search]
-* ~~Process Data~~
-* ~~Return Results~~
-* ~~Add endpoint for raw data~~ 
-* Need to break up [search]
- 
 ### API
 
 Get Summary
@@ -34,8 +19,6 @@ Get Raw Data
 :start = MM-DD
 :end = MM-DD
 ```
-
-
 
 ### Installation
 
@@ -54,6 +37,22 @@ $ npm install
 ```sh
 $ mocha test
 ```
+
+## Todo
+*  ~~Get Date Range via url~~ [search]
+*  ~~Formate Date Range~~ [processDateRange]
+*  ~~Make sure the date range is less than 8 days~~ [processDateRange]
+*  ~~Choose database~~ [mongodb]
+*  ~~Configure DB~~
+*  ~~Save Test Data to DB~~ 
+*  ~~Check [LPO] for date range~~ [search]
+*  ~~Check to see if date range exist in database~~ [search]
+*  ~~Else retrieve data from~~ [LPO][search]
+* ~~Retrieve Data~~ [search]
+* ~~Process Data~~
+* ~~Return Results~~
+* ~~Add endpoint for raw data~~ 
+* Need to break up [search]
 
 
 [MongoDB]: <https://www.mongodb.org/downloads#productiong>
