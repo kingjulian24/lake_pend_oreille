@@ -43,9 +43,11 @@ Install  [Mongodb]
 
 ### DB Setup
 ```
-ID: date + time in milliseconds
-date: date in milliseconds
-data: reading
+DB Name: DMDB
+
+ID: Number, date + time in milliseconds
+date: Number, date in milliseconds
+data: Number, reading
 ```
 
 Install dependencies 
@@ -61,6 +63,4 @@ $ mocha test
 [MongoDB]: <https://www.mongodb.org/downloads#productiong>
 [LPO]: <http://lpo.dt.navy.mil/>
 [processDateRange]: <https://github.com/kingjulian24/lake_pend_oreille/blob/master/stats/processDateRange.js>
-
-
 [search]: <https://github.com/kingjulian24/lake_pend_oreille/blob/master/stats/search.js>
