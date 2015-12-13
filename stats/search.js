@@ -14,7 +14,7 @@ var queryDB = function(date,cb ) {
      });
  };
 
-var searchDB = function (dates, cb) {
+var searchDB = function (dates, raw, cb) {
     var queries = prepDBQuery(dates);
     async.map(dates, queryDB, function(err, dates){
         var urlsList = urls.getUrls(dash.compact(dates));
@@ -22,7 +22,7 @@ var searchDB = function (dates, cb) {
             var records = genDBRecords.generate(readings);
             async.map(records, saveToDB, function(err, results){
                 async.map(queries, getData, function(err, data){
-                    cb(processData(data));
+                    cb(processData(data, raw));
                 });
                     
             }); 
@@ -31,7 +31,7 @@ var searchDB = function (dates, cb) {
     });
 };
 
-function processData(data) {
+function processData(data, raw) {
     var pd = {};
     var rawData = {
         wind_speed: [],
@@ -54,6 +54,8 @@ function processData(data) {
             rawData2[prop].push(rawData[prop][i].data);
         }
     }
+    
+    if(raw){ return rawData;}
 
     
     for(prop in rawData2) {
