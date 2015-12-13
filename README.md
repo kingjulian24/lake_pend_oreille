@@ -54,7 +54,7 @@ $ npm install
 ```
 ## Run Tests
 ```sh
-$ sh moch test
+$ mocha test
 ```
 
 
