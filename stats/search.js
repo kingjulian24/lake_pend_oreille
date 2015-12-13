@@ -4,6 +4,7 @@ var dash = require('underscore');
 var db = require('./models/readings');
 var urls = require('./urls');
 var genDBRecords = require('./genDBRecords');
+var helpers = require('../test/helpers');
 
 
 var queryDB = function(date,cb ) {
@@ -14,12 +15,16 @@ var queryDB = function(date,cb ) {
  };
 
 var searchDB = function (dates, cb) {
+    var queries = prepDBQuery(dates);
     async.map(dates, queryDB, function(err, dates){
         var urlsList = urls.getUrls(dash.compact(dates));
         async.map(urlsList, getReadingOuter, function(err, readings){
             var records = genDBRecords.generate(readings);
             async.map(records, saveToDB, function(err, results){
-                cb(results);
+                async.map(queries, getData, function(err, data){
+                    cb(proccessData(data));
+                });
+                    
             }); 
         });
  
@@ -46,6 +51,76 @@ var getReadingOuter = function(urls, cb){
         cb(err, data);
     });
 };
+
+var getDataInner = function(queryObj, cb) {
+    db[queryObj.type].find(queryObj.query, function(err, rows){
+       cb(err,rows);
+    });
+}
+
+var getData = function(queryObj, cb) {
+    async.map(queryObj, getDataInner, function(err, data){
+        cb(err, data);
+    });
+}
+
+
+
+function prepDBQuery(dates) {
+    var collections = ['air_temp', 'bar_press', 'wind_speed'];
+    var query = {
+        wind_speed:[],
+        bar_press:[],
+        air_temp:[]
+    };
+    for(var i = 0; i < dates.length; i++) {
+       for(var j = 0; j < collections.length; j++) {
+           query[collections[j]].push({
+               query: {date: dates[i]},
+               type: collections[j]
+           });
+       }
+    }
+    
+    return query;
+   
+
+}
+
+//async.map(x, getData, function(err, data){
+//    
+//});
+//
+//getData(new Date("2014/01/01").getTime(), 'wind_speed', function(err, data){
+//    console.log(data);
+//});
+
+// // Mean
+//        var readings = dash.map(rows, function(row){  return row.data; });
+//        var sum = dash.reduce(readings, function(memo, num){ return memo + num; });
+//        var mean = Math.round((sum/readings.length)*100)/100;
+//        
+//        // Median
+//        readings.sort();
+//        var isOdd = readings.length % 2 === 1 ? true : false;
+//        var median;
+//        if(isOdd){
+//            var index = Math.floor([readings.length/2]);
+//            median = readings[index];
+//        } else {
+//            var index1 = readings.length/2;
+//            var index2 = index1 - 1;
+//            median = (readings[index1] + readings[index2]) / 2;
+//        }
+//        
+//        cb(err,{
+//            type: type,
+//            mean: mean,
+//            median: median
+       // });
+
+    
+
 
 
 module.exports = {
