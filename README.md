@@ -15,6 +15,7 @@ Generate the Mean and Median of the wind speed, barometric and air temperature f
 * ~~Retrieve Data~~ [search]
 * ~~Process Data~~
 * ~~Return Results~~
+* Add endpoint for raw data 
 * Need to break up [search]
 
 
