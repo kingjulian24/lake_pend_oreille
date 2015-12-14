@@ -3,16 +3,17 @@
  * GET home page.
  */
 var app = require('../stats');
+var pdr = require('../stats/processDateRange');
 var raw;
 exports.index = function(req, res){
   res.render('index', { title: 'Express' });
 };
 
 exports.getData = function(req, res){
-    var dateRange = app.processDateRange(req.params);
+    var dateRange = pdr(req.params);
     raw = false;
     if (!dateRange.err) {
-        app.search.db(dateRange.dates, raw, function(err, data){
+        app.fetchData(dateRange.dates, raw, function(err, data){
            if(err) {
                res.send(err);
            } else {
@@ -27,10 +28,10 @@ exports.getData = function(req, res){
 };
 
 exports.getRawData = function(req, res){
-    var dateRange = app.processDateRange(req.params);
+    var dateRange = pdr(req.params);
     raw = true;
     if (!dateRange.err) {
-        app.search.db(dateRange.dates, raw, function(err, data){
+        app.fetchData(dateRange.dates, raw, function(err, data){
            if(err) {
                res.send(err);
            } else {
