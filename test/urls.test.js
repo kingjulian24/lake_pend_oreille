@@ -24,8 +24,6 @@ describe('url stats', function(){
 
 		x.should.eql(expected);
 		done();
-		//console.log(x);
-		//console.log(new Date(d1).getTime());
 	});
 });
 
