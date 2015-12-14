@@ -22,14 +22,10 @@ exports.processDBData = function(data, raw) {
         for(var i = 0; i < rawData[prop].length; i++ ){
             rawData2[prop].push(rawData[prop][i].data);
         }
+        pd[prop] = getStats(rawData2[prop]);
     }
     
     if(raw){ return rawData;}
-
-    
-    for(prop in rawData2) {
-        pd[prop] = getStats(rawData2[prop]);
-    }
     
     return pd;
 }
