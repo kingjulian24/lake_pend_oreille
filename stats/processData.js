@@ -1,5 +1,3 @@
-var dash = require('underscore');
-
 exports.processDBData = function(data, raw) {
     var pd = {};
     var rawData = {
@@ -32,8 +30,9 @@ exports.processDBData = function(data, raw) {
 
 function getStats(readings) {
     // Mean
-    var sum = dash.reduce(readings, function(memo, num){ return memo + num; });
-    var mean = Math.round((sum/readings.length)*100)/100;
+    var mean = (readings.reduce(function(memo, num){
+        return memo + num; 
+    })/readings.length).toFixed(2);
 
     // Median
     readings.sort();
@@ -46,10 +45,10 @@ function getStats(readings) {
         var index1 = readings.length/2;
         var index2 = index1 - 1;
         median = (readings[index1] + readings[index2]) / 2;
-    }
+    } 
 
     return {
-        mean: mean,
+        mean: parseFloat(mean),
         median: median
      };
 }

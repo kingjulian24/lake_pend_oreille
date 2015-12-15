@@ -37,7 +37,7 @@ var d4 = {
             {
                 _id: 1388552577000,
                 date: 1388552400000,
-                data: 7.6,
+                data: 7.60,
                 __v: 0
             }
         ]
@@ -47,7 +47,7 @@ var d4 = {
             {
                 _id: 1388552577000,
                 date: 1388552400000,
-                data: 7.6,
+                data: 7.60,
                 __v: 0
             }
         ]
@@ -57,7 +57,7 @@ var d4 = {
             {
                 _id: 1388552577000,
                 date: 1388552400000,
-                data: 7.6,
+                data: 7.60,
                 __v: 0
             }
         ]
@@ -65,14 +65,14 @@ var d4 = {
 };
 
 var e2 = {
-    wind_speed: { mean: 7.6, median: 7.6 },
-    air_temp: { mean: 7.6, median: 7.6 },
-    bar_press: { mean: 7.6, median: 7.6 } 
+    wind_speed: { mean: 7.60, median: 7.60 },
+    air_temp: { mean: 7.60, median: 7.60 },
+    bar_press: { mean: 7.60, median: 7.60 } 
 };
 var e3 = { 
-    wind_speed: [ { _id: 1388552577000, date: 1388552400000, data: 7.6, __v: 0 } ],
-    air_temp: [ { _id: 1388552577000, date: 1388552400000, data: 7.6, __v: 0 } ],
-    bar_press: [ { _id: 1388552577000, date: 1388552400000, data: 7.6, __v: 0 } ] 
+    wind_speed: [ { _id: 1388552577000, date: 1388552400000, data: 7.60, __v: 0 } ],
+    air_temp: [ { _id: 1388552577000, date: 1388552400000, data: 7.60, __v: 0 } ],
+    bar_press: [ { _id: 1388552577000, date: 1388552400000, data: 7.60, __v: 0 } ] 
 };
 
 describe('process data stats', function(){
