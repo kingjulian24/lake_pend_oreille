@@ -21,7 +21,7 @@ exports.fetchData = function (dates, raw, cb) {
         if(pdata) {
             cb(null, pdata);
         } else {
-            cb(true, pdata);
+            cb(err, pdata);
         }
         
     });
