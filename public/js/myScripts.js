@@ -127,14 +127,6 @@ $(function(){
                 x: 'x',
                 type: 'line',
               columns: rawChartData,
-                groups:[
-                    [
-                    'Air Temperature',
-                    'Wind Speed',
-                    'Barometric Pressure'  
-                    ]
-
-                ]
             },
             axis: {
               x: {
@@ -152,7 +144,7 @@ $(function(){
     
     
     
-    loadData('2014/01-01/01-04');
+    loadData('2014/07-01/07-03');
     
  
     
