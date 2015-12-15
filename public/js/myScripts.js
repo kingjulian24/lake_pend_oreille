@@ -29,7 +29,7 @@ $(function(){
     
     function loadData(p) {
         params = p;
-        async.parallel([summary,raw], function(err, data){
+        async.series([summary,raw], function(err, data){
             formatData(data);
             loadCharts();
         });
@@ -144,7 +144,7 @@ $(function(){
     
     
     
-    loadData('2014/07-01/07-03');
+    loadData('2014/09-05/09-07');
     
  
     
