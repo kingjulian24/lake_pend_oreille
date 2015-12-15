@@ -3,7 +3,6 @@ var dash = require('underscore');
 var urlsGenerator = require('./urls');
 var genDBRecords = require('./genDBRecords');
 var processData = require('./processData');
-var helpers = require('../test/helpers');
 var dbF = require('./dbFunctions');
 var siteF = require('./siteFunctions');
 var queries, datesList;
