@@ -10,13 +10,16 @@ exports.index = function(req, res){
 };
 
 exports.getData = function(req, res){
+    var raw = req.url.trim().split("/")[5];
+    raw = raw ? true : false;
+    console.log(raw);
     var dateRange = pdr(req.params);
     if (!dateRange.err) {
-        app.fetchData(dateRange.dates, false, function(err, data){
+        app.fetchData(dateRange.dates, raw, function(err, data){
            if(err) {
                res.send(err);
            } else {
-               res.json(data); // some how this is not needed ????
+               res.json(data); 
            }
         });
         
@@ -26,22 +29,6 @@ exports.getData = function(req, res){
     
 };
 
-exports.getRawData = function(req, res){
-    var dateRange = pdr(req.params);
-    if (!dateRange.err) {
-        app.fetchData(dateRange.dates, true, function(err, data){
-           if(err) {
-               res.send(err);
-           } else {
-               res.json(data); // some how this is not needed ????
-           }
-        });
-        
-    } else {
-        res.status(403).json({error: dateRange.err.toString() });
-    }
-    
-};
 
 
 
