@@ -2,11 +2,57 @@ var async = require('async');
 var request = require('request');
 var dash = require('underscore');
 var db = require('./models/readings');
-var urls = require('./urls');
+var urlsGenerator = require('./urls');
 var genDBRecords = require('./genDBRecords');
 var processData = require('./processData');
 var helpers = require('../test/helpers');
+var queries, datesList;
 
+
+exports.fetchData = function (dates, raw, cb) {
+    datesList = dates;
+    queries = processData.prepDBQuery(dates);
+    async.waterfall([
+        searchDBForDates,
+        getMissingDates,
+        saveMissingDatesToDB,
+        getSavedDataFromDB
+    ], function(err, data){
+        var pdata = processData.processDBData(data, raw);
+        if(pdata) {
+            cb(null, pdata);
+        } else {
+            cb(true, pdata);
+        }
+        
+    });
+};
+
+var searchDBForDates = function(cb) {
+    async.map(datesList, queryDB, function(err, dates){
+        var urlsList = urlsGenerator.getUrls(dash.compact(dates));
+        cb (err, urlsList);
+    });
+};
+
+var getMissingDates = function(urlsList, cb ) {
+    async.map(urlsList, getReadingInner, function(err, readings){
+        var records = genDBRecords.generate(readings);
+        cb(err, records);
+    });
+};
+
+var saveMissingDatesToDB = function(records, cb) {
+    async.map(records, saveToDB, function(err, results){
+        cb(err, results);
+    });
+};
+
+var getSavedDataFromDB = function(unused, cb) {
+    async.map(queries, getData, function(err, data){
+        cb(err, data);
+    });
+};
 
 var queryDB = function(date,cb ) {
      db.wind_speed.find({ date: date }, function(err,data){
@@ -14,24 +60,6 @@ var queryDB = function(date,cb ) {
         cb(null, false);      
      });
  };
-
-exports.fetchData = function (dates, raw, cb) {
-    var queries = processData.prepDBQuery(dates);
-    async.map(dates, queryDB, function(err, dates){
-        var urlsList = urls.getUrls(dash.compact(dates));
-        async.map(urlsList, getReadingOuter, function(err, readings){
-            var records = genDBRecords.generate(readings);
-            async.map(records, saveToDB, function(err, results){
-                async.map(queries, getData, function(err, data){
-                    cb(processData.processDBData(data, raw));
-                });
-                    
-            }); 
-        });
- 
-    });
-};
-
 
 var saveToDB = function(record, cb) {
    record.save(function(err){
@@ -44,7 +72,10 @@ var saveToDB = function(record, cb) {
 
 var getReadingInner = function(url, cb) {
     request(url, function(err,res,body){
-        cb(null, body.trim().split("\n"));
+        if(body) {
+           cb(null, body.trim().split("\n")); 
+        }
+        
     });
 };
 
@@ -58,10 +89,10 @@ var getDataInner = function(queryObj, cb) {
     db[queryObj.type].find(queryObj.query, function(err, rows){
        cb(err,rows);
     });
-}
+};
 
 var getData = function(queryObj, cb) {
     async.map(queryObj, getDataInner, function(err, data){
         cb(err, data);
     });
-}
+};
