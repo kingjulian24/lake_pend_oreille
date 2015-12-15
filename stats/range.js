@@ -1,5 +1,6 @@
-var dra = require('date-range-array');
 var _ = require('underscore');
+var moment = require('moment');
+var dra = require('date-range-array');
 var dateRange = {};
 var MINYEAR = new Date("2006-12-31").getTime();
 var todaysDate = new Date(Date.now());
@@ -7,6 +8,30 @@ var yesterday = todaysDate.getDate() - 1;
 var thisMonth = todaysDate.getMonth();
 var thisYear = todaysDate.getFullYear();
 var maxDate = new Date(thisYear,thisMonth, yesterday).getTime();
+
+/*
+* @param {array} dates in milliseconds
+* @return {array} urls
+*/
+exports.getUrls = function(dates) {
+    var baseUrl = "http://lpo.dt.navy.mil/data/DM/",
+        newDate, fDate, year;
+    var urls = _.map(dates, function(date){
+        newDate = new Date(date);
+        fDate = moment(newDate).format('YYYY_MM_DD');
+        year = moment(newDate).format('YYYY');
+        return {
+            wind_speed : baseUrl +""+year+"/"+fDate+"/Wind_Speed",
+            air_temp : baseUrl +""+year+"/"+fDate+"/Air_Temp",
+            bar_press : baseUrl +""+year+"/"+fDate+"/Barometric_Press"
+        };
+    });
+    
+    return urls;
+};
+
+
+
 
 /*
     @param {}
@@ -22,7 +47,7 @@ var maxDate = new Date(thisYear,thisMonth, yesterday).getTime();
     }
 */
 
- module.exports = function ( range ) {
+ exports.getDates = function ( range ) {
     
     // Generate date range array 
     try {

@@ -1,10 +1,9 @@
 var async = require('async');
 var dash = require('underscore');
-var urlsGenerator = require('./urls');
-var genDBRecords = require('./genDBRecords');
 var processData = require('./processData');
 var dbF = require('./dbFunctions');
 var siteF = require('./siteFunctions');
+var range = require('./range');
 var queries, datesList;
 
 
@@ -29,14 +28,14 @@ exports.fetchData = function (dates, raw, cb) {
 
 var searchDBForDates = function(cb) {
     async.map(datesList, dbF.query, function(err, dates){
-        var urlsList = urlsGenerator.getUrls(dash.compact(dates));
+        var urlsList = range.getUrls(dash.compact(dates));
         cb (err, urlsList);
     });
 };
 
 var getMissingDates = function(urlsList, cb ) {
     async.map(urlsList, siteF.fetch , function(err, readings){
-        var records = genDBRecords.generate(readings);
+        var records = dbF.genRecords(readings);
         cb(err, records);
     });
 };

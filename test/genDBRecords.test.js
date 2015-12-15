@@ -1,4 +1,4 @@
-var gdbr = require('../stats/genDBRecords');
+var gdbr = require('../stats/dbFunctions').genRecords;
 var records;
 var data = [
     {
@@ -16,7 +16,7 @@ var data = [
 
 describe('genDBRecords stats', function(){
 	it('should list db records', function(done){
-		records = gdbr.generate(data);
+		records = gdbr(data);
 		records.length.should.eql(3);
 		done();
 	});
