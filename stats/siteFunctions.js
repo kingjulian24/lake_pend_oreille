@@ -7,13 +7,8 @@ exports.fetch = function(urls, cb){
     });
 };
 
-var fetchHelper = function(urls, cb) {
-    async.map(urls, fetchHelperHelper, function(err, data){
-        cb(err, data);
-    });
-};
 
-var fetchHelperHelper = function(url, cb) {
+var fetchHelper = function(url, cb) {
     request(url, function(err,res,body){
         if(body) {
            cb(null, body.trim().split("\n")); 

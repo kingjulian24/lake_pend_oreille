@@ -16,13 +16,12 @@ exports.fetchData = function (dates, raw, cb) {
         saveMissingDatesToDB,
         getSavedDataFromDB
     ], function(err, data){
-        var pdata = processData.processDBData(data, raw);
-        if(pdata) {
+        if(!err) {
+            var pdata = processData.processDBData(data, raw);
             cb(null, pdata);
         } else {
-            cb(err, pdata);
+            cb(err);
         }
-        
     });
 };
 
