@@ -1,5 +1,5 @@
 {
-  "name": "application-name",
+  "name": "lpo",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -18,15 +18,33 @@
     "co": "^4.6.0",
     "cogent": "^1.0.1",
     "cradle": "^0.6.9",
-    "lodash": "^3.10.1",
-    "mongoose": "^4.2.9",
-    "underscore": "^1.8.3"
+    "lodash": "^3.10.1"
   },
-	"devDependencies": {
-		"mocha":">=2.1.0",
-		"should":"^7.0.3",
-		"should-sinon":"0.0.3",
-		"sinon":">=1.7.1"
-	}
-
+  "devDependencies": {
+    "mocha": ">=2.1.0",
+    "should": "^7.0.3",
+    "should-sinon": "0.0.3",
+    "sinon": ">=1.7.1"
+  },
+  "description": "### Overview: Generate the Mean and Median of the wind speed, barometric and air temperature for a given date range of the [Lake Pend Oreille] dataset.",
+  "main": "app.js",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kingjulian24/lake_pend_oreille.git"
+  },
+  "keywords": [
+    "Data",
+    "analysis",
+    "Deep",
+    "Moor"
+  ],
+  "author": "Julian Brown <brownjulian2@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kingjulian24/lake_pend_oreille/issues"
+  },
+  "homepage": "https://github.com/kingjulian24/lake_pend_oreille#readme"
 }
