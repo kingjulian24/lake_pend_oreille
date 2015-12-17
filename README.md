@@ -1,7 +1,7 @@
 # lake_pend_oreille
 
 ### Overview:
-[Nodejs] API that exposes the statistical data of the [Lake Pend Oreille] dataset front end app that consumes and visualize the data using [C3].
+[Nodejs] API that generate and exposes statistical data using the [Lake Pend Oreille] dataset and a front end app that consumes and visualize the data using [C3].
 
 ### API
 
