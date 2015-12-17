@@ -17,7 +17,7 @@ var data = [
 describe('DB functions stats', function(){
 	it('should list db records', function(done){
 		records = dbF.genRecords(data);
-		records.length.should.eql(3);
+		records.length.should.eql(6);
 		done();
 	});
 });
