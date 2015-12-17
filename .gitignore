@@ -2,6 +2,7 @@
 *.swp
 # Logs
 logs
+notes.js
 *.log
 npm-debug.log*
 
