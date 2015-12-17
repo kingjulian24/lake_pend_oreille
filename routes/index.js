@@ -23,7 +23,7 @@ exports.getData = function(req, res){
         });
         
     } else {
-        res.status(403).json({error: dateRange.err.toString() });
+        res.json({error: dateRange.err.toString() });
     }
     
 };
