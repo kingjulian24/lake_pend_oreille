@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node app.js",
-    "postinstall": "cd ./public && bower install"
+    "postinstall": "cd ./public && ../node_modules/bower/bin/bower install"
   },
   "dependencies": {
     "async": "^1.5.0",
@@ -48,6 +48,7 @@
   },
   "homepage": "https://github.com/kingjulian24/lake_pend_oreille#readme",
   "engines": {
-    "node": "5.1.1"
+    "node": "5.1.1",
+    "npm": "3.3.12"
   }
 }
