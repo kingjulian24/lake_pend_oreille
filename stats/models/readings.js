@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://192.168.55.55/DMDB');
+mongoose.connect('mongodb://lpouser:lpopw@ds037185.mongolab.com:37185/dmdb');
 var Schema = mongoose.Schema;
 
 readingsSchema = new Schema({
