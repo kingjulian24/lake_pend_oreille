@@ -97,9 +97,9 @@ $(function(){
         for(type in data) {
             for(var i = 0; i < data[type].length; i++){
                if(type === 'wind_speed'){
-                   myDates.push(new Date(data[type][i]._id));
+                   myDates.push(new Date( Number(data[type][i].key) ));
                 }
-                types[type].push(data[type][i].data);
+                types[type].push(data[type][i].value.data);
             }
         }
         
