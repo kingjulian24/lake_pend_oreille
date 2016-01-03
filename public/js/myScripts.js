@@ -154,13 +154,8 @@ $(function(){
               x: {
                 type: 'timeseries',
                 tick: {
-                format: function (x) {
-                        if (x.getDate() === 1) {
-                            console.log(x);
-                            return x.toLocaleDateString();
-                        }
-                    }
-                } // tick
+                  format: '%d %H:%M:%S'
+                }
               } // x
             }, // axis
             subchart: {
