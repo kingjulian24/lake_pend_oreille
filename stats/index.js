@@ -17,11 +17,10 @@ exports.fetchData = function (dates, raw, cb) {
         getSavedDataFromDB
     ], function(err, data){
         if(!err) {
-            //var pdata = processData.processDBData(data, raw);
-            //cb(null, pdata);
-            cb(data);
+            var pdata = processData.processDBData(data, raw);
+            cb(null, pdata);
         } else {
-            cb(err);
+            cb(err,null);
         }
     });
 };
