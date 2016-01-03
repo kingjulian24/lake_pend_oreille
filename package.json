@@ -46,5 +46,8 @@
   "bugs": {
     "url": "https://github.com/kingjulian24/lake_pend_oreille/issues"
   },
-  "homepage": "https://github.com/kingjulian24/lake_pend_oreille#readme"
+  "homepage": "https://github.com/kingjulian24/lake_pend_oreille#readme",
+  "engines": {
+    "node": "5.1.1"
+  }
 }
