@@ -1,0 +1,25 @@
+{
+  "name": "LPO",
+  "homepage": "https://github.com/kingjulian24/lake_pend_oreille",
+  "authors": [
+    "Julian Brown <brownjulian2@gmail.com>"
+  ],
+  "description": "Analyse LPO Dataset",
+  "main": "",
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "c3": "~0.4.10",
+    "async": "~1.5.0"
+  }
+}
