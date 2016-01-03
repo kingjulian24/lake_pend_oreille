@@ -16,14 +16,14 @@ exports.processDBData = function(data, raw) {
         }
     }
     
+    if(raw){ return rawData;}
+    
     for (prop in rawData) {
         for(var i = 0; i < rawData[prop].length; i++ ){
-            rawData2[prop].push(rawData[prop][i].data);
+            rawData2[prop].push(rawData[prop][i].value.data);
         }
         pd[prop] = getStats(rawData2[prop]);
     }
-    
-    if(raw){ return rawData;}
     
     return pd;
 }
