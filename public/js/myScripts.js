@@ -156,6 +156,7 @@ $(function(){
                 tick: {
                 format: function (x) {
                         if (x.getDate() === 1) {
+                            console.log(x);
                             return x.toLocaleDateString();
                         }
                     }
