@@ -167,9 +167,9 @@ $(function(){
     // format dates for ajax requests
     function formatDate(date) {
       var someday = new Date(date);
-      var month = someday.getUTCMonth() + 1;
-      var day = someday.getUTCDate();
-      var year = someday.getUTCFullYear();
+      var month = someday.getMonth() + 1;
+      var day = someday.getDate();
+      var year = someday.getFullYear();
 
       if (month <= 9) { month = '0' + month; }
       if (day <= 9) { day = '0' + day; }
