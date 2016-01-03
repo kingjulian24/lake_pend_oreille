@@ -17,8 +17,9 @@ exports.fetchData = function (dates, raw, cb) {
         getSavedDataFromDB
     ], function(err, data){
         if(!err) {
-            var pdata = processData.processDBData(data, raw);
-            cb(null, pdata);
+            //var pdata = processData.processDBData(data, raw);
+            //cb(null, pdata);
+            cb(data);
         } else {
             cb(err);
         }

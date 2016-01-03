@@ -1,21 +1,35 @@
-var db = require('./models/readings');
+var db = require('./db');
 var async = require('async');
 var _ = require('underscore');
 
 exports.save = function(record, cb) {
-   record.save(function(err){
-       if(err) {
-           cb(false, false);
+   db[record.type].put(record.key,record.value, function(err){
+       if(!err){
+           cb(null, 'done');
+       } else {
+           cb(err, null);
        }
-       cb(null, true);
-   }); 
+   });
 };
 
 exports.query = function(date,cb ) {
-     db.wind_speed.find({ date: date }, function(err,data){
-        if(data.length < 1 ) { return cb( null, date ); } // return date not in db
-        cb(null, false);      
-     });
+    var recs = [];
+    db.wind_speed.createReadStream()
+    .on('data', function(data){
+        if(data.value.date == date) {
+            recs.push(data);
+        }     
+    })
+    .on('error', function(error){
+        cb(error, null);
+    })
+    .on('end', function(){
+        if(recs.length == 0) {
+            cb(null, date);
+        } else {
+            cb(null, false);
+        }
+    });
  };
 
 exports.fetch = function(queryObj, cb) {
@@ -25,9 +39,21 @@ exports.fetch = function(queryObj, cb) {
 };
 
 var fetchHelper = function(queryObj, cb) {
-    db[queryObj.type].find(queryObj.query, function(err, rows){
-       cb(err,rows);
+    var recs = [];
+    db[queryObj.type].createReadStream()
+    .on('data', function(data){
+        if(data.value.date == queryObj.query.date) {
+            recs.push(data);
+        }     
+    })
+    .on('error', function(error){
+        cb(error, null);
+    })
+    .on('end', function(){
+        cb(null, recs);
     });
+    
+    
 };
 
 /*
@@ -46,11 +72,14 @@ exports.genRecords = function(readingsList) {
                 dateStr = new Date( readingArr[0].replace(/_/g,"/") ).getTime();
                 id = new Date ( readingArr[0].replace(/_/g,"/") +" "+ readingArr[1] ).getTime();
                 records.push(
-                    new db[type]({
-                        _id: id,
-                        date: dateStr,
-                        data: parseFloat(readingArr[2])
-                    })
+                    {
+                        type: type,
+                        key: id,
+                        value: {
+                            date: dateStr,
+                            data: parseFloat(readingArr[2])
+                        }
+                    } 
                 );
             
             } // for var
