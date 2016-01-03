@@ -81,7 +81,7 @@ $(function(){
         bpMean.push(data.bar_press.mean);
         bpMedian.push(data.bar_press.median); 
              
-        
+        sumChartData = [];
         sumChartData.push(atMean,atMedian,bpMean,bpMedian,wsMean,wsMedian);
     }
     
@@ -102,7 +102,7 @@ $(function(){
                 types[type].push(data[type][i].value.data);
             }
         }
-        
+        rawChartData = [];
         rawChartData.push(myDates,types.air_temp,types.wind_speed,types.bar_press);
     }
     
@@ -167,9 +167,9 @@ $(function(){
     // format dates for ajax requests
     function formatDate(date) {
       var someday = new Date(date);
-      var month = someday.getMonth() + 1;
-      var day = someday.getDate();
-      var year = someday.getFullYear();
+      var month = someday.getUTCMonth() + 1;
+      var day = someday.getUTCDate();
+      var year = someday.getUTCFullYear();
 
       if (month <= 9) { month = '0' + month; }
       if (day <= 9) { day = '0' + day; }
@@ -195,6 +195,8 @@ $(function(){
         endDate = formatDate(document.rangeform.to.value);
         loadData();
         showIndicator(true,$loadIndicator);
+        console.log("STARTDATE:", startDate);
+        console.log("ENDDATE:", endDate);
          
   
         e.preventDefault();
