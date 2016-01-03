@@ -1,7 +1,7 @@
 # lake_pend_oreille
 
 ### Overview:
-[Nodejs] API that generate and exposes statistical data using the [Lake Pend Oreille] dataset and a front end app that consumes and visualize the data using [C3].
+[Nodejs] API that generate, store and exposes statistical data using the [Lake Pend Oreille] dataset  and [LevelDB] and a front end app that consumes and visualize the data using [C3].
 
 ### API
 
@@ -30,17 +30,10 @@ Front End
 
 ### Installation
 
-Install  [Mongodb]
-
-### DB Setup
-```
-DB Name: DMDB
-```
-
 Install dependencies 
 ```sh
 $ npm install 
-$ bower install from /public
+$ bower install
 ```
 ## Run Tests
 ```sh
@@ -48,7 +41,7 @@ $ mocha test
 ```
 
 
-[MongoDB]: <https://www.mongodb.org/downloads#productiong>
+[LevelDB]: <http://leveldb.org/>
 [LPO]: <http://lpo.dt.navy.mil/>
 [Lake Pend Oreille]: <http://lpo.dt.navy.mil/> 
 [processDateRange]: <https://github.com/kingjulian24/lake_pend_oreille/blob/master/stats/processDateRange.js>
